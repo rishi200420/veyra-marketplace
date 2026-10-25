@@ -1,0 +1,10 @@
+VEYRA Milestone 12 — Email Notifications
+
+1. Back up backend/app/main.py.
+2. Replace backend/app/main.py with the version in this patch.
+3. Merge the SMTP variables from backend/.env.example into your existing backend/.env. Do NOT replace your existing .env; preserve DATABASE_URL, ADMIN_API_TOKEN, CUSTOMER_TOKEN_SECRET, and other settings.
+4. Keep EMAIL_NOTIFICATIONS_ENABLED=false until SMTP details are configured and tested.
+5. Restart the backend. Open /docs, use GET /api/v1/admin/notifications/status, then POST /api/v1/admin/notifications/test with your own email. The endpoints require X-Admin-Token containing your current signed-in admin session token.
+6. Enable EMAIL_NOTIFICATIONS_ENABLED=true only after test delivery succeeds. Never paste SMTP credentials into chat or commit .env.
+
+No frontend files or database schema changes are required for this milestone. Email delivery is best-effort; failed SMTP sends do not roll back orders.

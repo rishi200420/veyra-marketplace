@@ -1,0 +1,27 @@
+VEYRA ROLE-BASED STAFF AUTHENTICATION PATCH
+
+Contains only these replacement source files:
+- backend/app/main.py
+- src/Admin.tsx
+
+Before applying:
+1. Stop the FastAPI and Vite servers.
+2. Back up backend/app/main.py and src/Admin.tsx.
+3. Copy these two files into the same paths in your existing veyra_update_temp folder.
+4. Do NOT replace or delete backend/veyra.db, backend/uploads/, backend/.env, root .env.local, or node_modules.
+5. Restart backend and frontend.
+6. Open /admin and select “First time here? Set up the Founder account”. Use the existing ADMIN_API_TOKEN from backend/.env only in that setup form. Create a Founder password of at least 12 characters.
+7. After Founder setup, sign in with the Founder email/password. Use Staff accounts to create Manager and Worker accounts.
+
+Session behaviour:
+- Admin session token is stored in sessionStorage, so it is removed when the tab closes; reopening /admin requires sign-in.
+- The server also expires sessions after 12 hours as a safety limit.
+- Existing customer login/session behaviour is not changed.
+- Existing ADMIN_API_TOKEN remains only for one-time initial Founder setup; it is no longer accepted for protected admin API routes.
+
+Roles:
+- Founder: full dashboard access and staff role/deactivation control.
+- Manager: products, labels, orders, reports, can create Worker accounts; cannot change Settings or create Manager/Founder accounts.
+- Worker: order list and parcel status/tracking updates only.
+
+Important: This patch has not yet been tested against your local database/browser. Apply only after backing up the two source files, and test locally before relying on it for real business operations.

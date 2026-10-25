@@ -1,0 +1,30 @@
+node_modules/
+dist/
+.env
+backend/.env
+backend/.venv/
+backend/__pycache__/
+backend/veyra.db
+*.pyc
+.env.local
+backend/uploads/
+# Additional environment and Python exclusions
+.env.*
+!.env.example
+backend/.env.*
+.venv/
+venv/
+__pycache__/
+*.sqlite
+*.sqlite3
+# Vite cache and TypeScript build cache
+.vite/
+*.tsbuildinfo
+
+# Local databases and uploaded product images
+backend/*.db
+backend/uploads/
+
+# Python virtual environments
+backend/.venv/
+backend/venv/
